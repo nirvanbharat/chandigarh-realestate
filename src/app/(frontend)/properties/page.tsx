@@ -1,9 +1,10 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { PropertyCard } from '@/components/PropertyCard'
+import { Suspense } from 'react'
 import { PropertyFilters } from '@/components/PropertyFilters'
 
-export default async function PropertiesPage() {
+export default async function PropertiesPage({ searchParams }) {
     const payload = await getPayload({ config })
 
     const { docs: properties } = await payload.find({
@@ -22,8 +23,10 @@ export default async function PropertiesPage() {
                 < h1 className = "mt-4 font-serif text-5xl md:text-6xl font-light text-ink" >
                     Properties
                     </h1>
-        </header>
+                    </header>
+        < Suspense fallback = {< div className = "h-24" />}>
                     < PropertyFilters />
+            </Suspense>
 
     {
         properties.length === 0 ? (
