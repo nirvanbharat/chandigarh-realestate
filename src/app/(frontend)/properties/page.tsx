@@ -1,18 +1,42 @@
+import { Suspense } from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { PropertyCard } from '@/components/PropertyCard'
-import { Suspense } from 'react'
 import { PropertyFilters } from '@/components/PropertyFilters'
+import type { Where } from 'payload'
 
-export default async function PropertiesPage({ searchParams }) {
+export default async function PropertiesPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+    const params = await searchParams
     const payload = await getPayload({ config })
+
+    const and: Where[] = [{ status: { equals: 'available' } }]
+
+    if (typeof params.location === 'string' && params.location) {
+        and.push({ location: { equals: params.location } })
+    }
+    if (typeof params.type === 'string' && params.type) {
+        and.push({ type: { equals: params.type } })
+    }
+    if (typeof params.configuration === 'string' && params.configuration) {
+        and.push({ configuration: { equals: params.configuration } })
+    }
+    if (typeof params.q === 'string' && params.q) {
+        and.push({ title: { like: params.q } })
+    }
 
     const { docs: properties } = await payload.find({
         collection: 'properties',
-        where: { status: { equals: 'available' } },
+        where: { and },
         sort: '-createdAt',
-        limit: 50,
+        limit: 100,
+        depth: 2,
     })
+
+    const count = properties.length
 
     return (
         <main className= "mx-auto max-w-site px-6 md:px-12 py-20" >
@@ -24,23 +48,28 @@ export default async function PropertiesPage({ searchParams }) {
                     Properties
                     </h1>
                     </header>
-        < Suspense fallback = {< div className = "h-24" />}>
-                    < PropertyFilters />
-            </Suspense>
 
-    {
-        properties.length === 0 ? (
-            <p className= "text-muted" > No properties yet.</p>
+                    < Suspense fallback = {< div className = "h-32" />}>
+                        <PropertyFilters />
+                        </Suspense>
+
+                        < p className = "mt-8 mb-12 text-[11px] tracking-label uppercase text-muted" >
+                        { count } { count === 1 ? 'property' : 'properties' }
+</p>
+
+{
+    count === 0 ? (
+        <p className= "text-muted" > No properties match your filters.</p>
       ) : (
-            <div className= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4" >
-            {
-                properties.map((property) => (
-                    <PropertyCard key= { property.id } property = { property } />
+        <div className= "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4" >
+        {
+            properties.map((property) => (
+                <PropertyCard key= { property.id } property = { property } />
           ))
-            }
-            </div>
+        }
+        </div>
       )
-    }
-    </main>
+}
+</main>
   )
 }
