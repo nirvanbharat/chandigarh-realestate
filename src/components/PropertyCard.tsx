@@ -4,6 +4,7 @@ import type { Property, Media } from '@/payload-types'
 
 export function PropertyCard({ property }: { property: Property }) {
     const image = property.images?.[0] as Media | undefined
+    const unitCount = property.unitTypes?.length || 0
 
     return (
         <Link href= {`/properties/${property.slug}`
@@ -29,18 +30,18 @@ className = "object-cover transition-transform duration-700 ease-out group-hover
     { property.title }
         </h3>
 
-        < div className = "mt-3 flex justify-between text-sm text-muted" >
-            <span>{ property.configuration } </span>
-            <span>
-{ property.area?.value?.toLocaleString('en-IN') } { ' ' }
-{ property.area?.unit === 'sqyd' ? 'sq yd' : 'sq ft' }
-</span>
-    </div>
+{
+    unitCount > 0 && (
+        <p className="mt-3 text-sm text-muted" >
+        { unitCount } { unitCount === 1 ? 'configuration' : 'configurations' }
+    </p>
+        )
+}
 
-    < p className = "mt-4 text-[11px] tracking-label uppercase text-ink" >
-        Price on request
-            </p>
-            </div>
-            </Link>
+<p className="mt-4 text-[11px] tracking-label uppercase text-ink" >
+    Price on request
+        </p>
+        </div>
+        </Link>
   )
 }

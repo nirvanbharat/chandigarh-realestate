@@ -185,11 +185,13 @@ export interface Property {
   slug: string;
   location: 'chandigarh' | 'mohali' | 'panchkula' | 'zirakpur' | 'new-chandigarh';
   type: 'apartment' | 'villa' | 'plot' | 'penthouse';
-  configuration?: string | null;
-  area: {
-    value: number;
-    unit?: ('sqft' | 'sqyd') | null;
-  };
+  unitTypes?:
+    | {
+        configuration: string;
+        superArea?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   description?: {
     root: {
       type: string;
@@ -384,12 +386,12 @@ export interface PropertiesSelect<T extends boolean = true> {
   slug?: T;
   location?: T;
   type?: T;
-  configuration?: T;
-  area?:
+  unitTypes?:
     | T
     | {
-        value?: T;
-        unit?: T;
+        configuration?: T;
+        superArea?: T;
+        id?: T;
       };
   description?: T;
   amenities?:

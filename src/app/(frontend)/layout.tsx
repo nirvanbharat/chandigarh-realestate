@@ -27,6 +27,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 { children }
 <Footer />
     </body>
-        </html>
+    </html>
   )
 }

@@ -56,6 +56,7 @@ export const Properties: CollectionConfig = {
             name: 'type',
             type: 'select',
             required: true,
+            defaultValue: 'apartment',
             options: [
                 { label: 'Apartment', value: 'apartment' },
                 { label: 'Villa', value: 'villa' },
@@ -63,21 +64,16 @@ export const Properties: CollectionConfig = {
                 { label: 'Penthouse', value: 'penthouse' },
             ],
         },
-        { name: 'configuration', type: 'text' },
         {
-            name: 'area',
-            type: 'group',
+            name: 'unitTypes',
+            type: 'array',
+            labels: {
+                singular: 'Unit Type',
+                plural: 'Unit Types',
+            },
             fields: [
-                { name: 'value', type: 'number', required: true },
-                {
-                    name: 'unit',
-                    type: 'select',
-                    defaultValue: 'sqft',
-                    options: [
-                        { label: 'sq ft', value: 'sqft' },
-                        { label: 'sq yd', value: 'sqyd' },
-                    ],
-                },
+                { name: 'configuration', type: 'text', required: true },
+                { name: 'superArea', type: 'text' },
             ],
         },
         { name: 'description', type: 'richText' },
