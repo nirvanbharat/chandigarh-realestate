@@ -3,21 +3,67 @@
 @tailwind utilities;
 
 html {
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-    background: #FAF9F6;
-    color: #1A1A1A;
+  background: #FAF9F6;
+  color: #1A1A1A;
 }
 
-
-main:not(.hero-full) {
-  padding-top: 5rem;
+/* ── Hero: video background ── */
+.hero-video {
+  animation: heroPan 24s ease-in-out infinite alternate;
+  transform-origin: center center;
 }
 
-@media (min-width: 768px) {
-  main:not(.hero-full) {
-    padding-top: 6rem;
+@keyframes heroPan {
+  0% { transform: scale(1.02); }
+  100% { transform: scale(1.10); }
+}
+
+/* ── Hero: staggered text reveal ── */
+.hero-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-fade-1 { animation-delay: 0.3s; }
+.hero-fade-2 { animation-delay: 0.6s; }
+.hero-fade-3 { animation-delay: 1.0s; }
+.hero-fade-4 { animation-delay: 1.4s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Scroll-triggered section reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: revealUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { animation: none; }
+  .hero-fade,
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

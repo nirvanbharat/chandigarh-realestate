@@ -2,7 +2,7 @@
 
 export function Footer() {
   return (
-    <footer className="border-t border-hairline mt-section">
+    <footer className="border-t border-hairline bg-paper mt-section">
       <div className="mx-auto max-w-site px-6 md:px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
           <p className="font-serif text-2xl font-light">Nirvan Bharat</p>
@@ -16,22 +16,22 @@ export function Footer() {
           </p>
           <ul className="space-y-3 text-sm">
             <li>
-              <Link href="/properties" className="hover:text-accent transition-colors">
+              <Link href="/properties" className="hover:text-accent transition-colors duration-500">
                 Listings
               </Link>
             </li>
             <li>
-              <Link href="/properties/buy" className="hover:text-accent transition-colors">
+              <Link href="/properties/buy" className="hover:text-accent transition-colors duration-500">
                 Buy
               </Link>
             </li>
             <li>
-              <Link href="/properties/sell" className="hover:text-accent transition-colors">
+              <Link href="/properties/sell" className="hover:text-accent transition-colors duration-500">
                 Sell
               </Link>
             </li>
             <li>
-              <Link href="/properties/rent" className="hover:text-accent transition-colors">
+              <Link href="/properties/rent" className="hover:text-accent transition-colors duration-500">
                 Rent
               </Link>
             </li>
@@ -43,12 +43,12 @@ export function Footer() {
           </p>
           <ul className="space-y-3 text-sm">
             <li>
-              <a href="mailto:info.nirvanbharat@gmail.com" className="hover:text-accent transition-colors">
+              <a href="mailto:info.nirvanbharat@gmail.com" className="hover:text-accent transition-colors duration-500">
                 info.nirvanbharat@gmail.com
               </a>
             </li>
             <li>
-              <a href="tel:+919107868000" className="hover:text-accent transition-colors">
+              <a href="tel:+919107868000" className="hover:text-accent transition-colors duration-500">
                 +91 91078 68000
               </a>
             </li>
@@ -64,4 +64,3 @@ export function Footer() {
     </footer>
   )
 }
-
