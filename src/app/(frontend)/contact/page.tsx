@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { ContactForm } from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-    title: 'Contact | Chandigarh Tricity',
-    description: 'Get in touch about properties across the Chandigarh Tricity.',
+    title: 'Contact | Nirvan Bharat',
+    description: 'Get in touch about properties across the Nirvan Bharat.',
 }
 
 export default function ContactPage() {
@@ -48,7 +48,7 @@ export default function ContactPage() {
                 Office
                 </p>
                 < p className = "font-serif text-2xl font-light leading-snug" >
-                    Chandigarh Tricity
+                    Nirvan Bharat
                         < br />
                         Sector 17, Chandigarh
                             </p>
@@ -63,3 +63,4 @@ export default function ContactPage() {
         </main>
   )
 }
+

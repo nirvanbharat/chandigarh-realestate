@@ -1,4 +1,4 @@
-import { getPayload } from 'payload'
+﻿import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -10,7 +10,7 @@ const LOCATION_DATA: Record<string, { label: string; blurb: string }> = {
     chandigarh: {
         label: 'Chandigarh',
         blurb:
-            'The original planned city. Sectors 5, 9, 17 and 35 hold the most prestigious addresses in the Tricity. Supply is constrained and prices reflect it — this is where long-term value lives.',
+            'The original planned city. Sectors 5, 9, 17 and 35 hold the most prestigious addresses in the Tricity. Supply is constrained and prices reflect it â€” this is where long-term value lives.',
     },
     mohali: {
         label: 'Mohali',
@@ -30,7 +30,7 @@ const LOCATION_DATA: Record<string, { label: string; blurb: string }> = {
     'new-chandigarh': {
         label: 'New Chandigarh',
         blurb:
-            'The planned extension north of Chandigarh. Larger plots, lower density, and long-horizon appreciation. Best for buyers willing to wait 3–5 years for infrastructure to mature.',
+            'The planned extension north of Chandigarh. Larger plots, lower density, and long-horizon appreciation. Best for buyers willing to wait 3â€“5 years for infrastructure to mature.',
     },
 }
 
@@ -43,7 +43,7 @@ export async function generateMetadata({
     const data = LOCATION_DATA[slug]
     if (!data) return {}
     return {
-        title: `${data.label} Properties | Chandigarh Tricity`,
+        title: `${data.label} Properties | Nirvan Bharat`,
         description: data.blurb.slice(0, 155),
     }
 }

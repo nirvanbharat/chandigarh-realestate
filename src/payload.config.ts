@@ -1,4 +1,4 @@
-import { buildConfig } from 'payload'
+﻿import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
@@ -38,7 +38,7 @@ export default buildConfig({
     }),
     email: resendAdapter({
         defaultFromAddress: 'onboarding@resend.dev',
-        defaultFromName: 'Chandigarh Tricity',
+        defaultFromName: 'Nirvan Bharat',
         apiKey: process.env.RESEND_API_KEY || '',
     }),
     plugins: [
@@ -51,3 +51,4 @@ export default buildConfig({
         }),
     ],
 })
+

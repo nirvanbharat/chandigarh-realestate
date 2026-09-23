@@ -1,8 +1,8 @@
-import Image from 'next/image'
+﻿import Image from 'next/image'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'About | Chandigarh Tricity',
+    title: 'About | Nirvan Bharat',
     description:
         'A quiet, considered approach to real estate across Chandigarh, Mohali, Panchkula, Zirakpur, and New Chandigarh.',
 }
@@ -33,14 +33,14 @@ export default function AboutPage() {
               every conversation is confidential.
             </p>
         <p>
-              Our focus is on the buyer who values clarity over volume — who
+              Our focus is on the buyer who values clarity over volume â€” who
               wants to understand a micro - market, not scroll through hundreds
               of listings.We work across Chandigarh, Mohali, Panchkula,
         Zirakpur, and New Chandigarh, with an emphasis on the emerging
               premium pockets of the region.
             </p>
         <p>
-              If you are buying, we help you see what is actually for sale —
+              If you are buying, we help you see what is actually for sale â€”
               and what is worth waiting for.If you are selling, we present
               your property with the care it deserves.
             </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                         {
                             n: '03',
                             h: 'Local depth',
-                            b: 'We work one region — the Tricity — and know its sectors, builders, and price movements in detail.',
+                            b: 'We work one region â€” the Tricity â€” and know its sectors, builders, and price movements in detail.',
                         },
             ].map((p) => (
                             <div key= { p.n } className = "border-t border-hairline pt-8" >
