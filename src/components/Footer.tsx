@@ -43,13 +43,13 @@ export function Footer() {
           </p>
           <ul className="space-y-3 text-sm">
             <li>
-              <a href="mailto:hello@yourdomain.com" className="hover:text-accent transition-colors">
-                hello@yourdomain.com
+              <a href="mailto:info.nirvanbharat@gmail.com" className="hover:text-accent transition-colors">
+                info.nirvanbharat@gmail.com
               </a>
             </li>
             <li>
-              <a href="tel:+919876543210" className="hover:text-accent transition-colors">
-                +91 98765 43210
+              <a href="tel:+919107868000" className="hover:text-accent transition-colors">
+                +91 91078 68000
               </a>
             </li>
           </ul>
@@ -64,3 +64,4 @@ export function Footer() {
     </footer>
   )
 }
+

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { submitInquiry } from '@/app/(frontend)/properties/[slug]/actions'
@@ -64,7 +64,7 @@ export function InquiryForm({
 }
 className = "mt-8 w-full py-4 bg-ink text-paper text-[11px] tracking-label uppercase hover:bg-accent transition-colors disabled:opacity-50"
     >
-{ state === 'sending' ? 'Sending…' : 'Submit Inquiry'}
+{ state === 'sending' ? 'Sendingâ€¦' : 'Submit Inquiry'}
 </button>
     </form>
   )
@@ -100,3 +100,4 @@ function Field({
     </label>
   )
 }
+

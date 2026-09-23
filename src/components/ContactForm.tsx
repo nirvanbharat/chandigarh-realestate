@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -34,10 +34,10 @@ export function ContactForm() {
         return (
             <div className= "border border-hairline p-10 bg-white" >
             <p className="text-[11px] tracking-label uppercase text-muted" >
-                Thank you
-                    </p>
+          Thank you.
+        </p>
                     < p className = "mt-4 font-serif text-2xl font-light" >
-                        We & apos;ll be in touch shortly.
+                        {"We'll be in touch within 24 hours."}
         </p>
                             </div>
     )
@@ -81,8 +81,10 @@ export function ContactForm() {
 }
 className = "w-full py-4 bg-ink text-paper text-[11px] tracking-label uppercase hover:bg-accent transition-colors disabled:opacity-50"
     >
-{ state === 'sending' ? 'Sending…' : 'Send Message'}
+{ state === 'sending' ? 'Sendingâ€¦' : 'Send Message'}
 </button>
     </form>
   )
 }
+
+

@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+﻿import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     try {
         await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: 'info.nirvanbharat@gmail.com',        // ← your email
+            to: 'info.nirvanbharat@gmail.com',        // â† your email
             replyTo: email,
             subject: `Contact form: ${name}`,
             text: `

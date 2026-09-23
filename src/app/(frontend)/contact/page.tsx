@@ -26,10 +26,10 @@ export default function ContactPage() {
                                 Email
                                 </p>
                                 < a
-    href = "mailto:hello@yourdomain.com"
+    href = "mailto:info.nirvanbharat@gmail.com"
     className = "font-serif text-2xl font-light hover:text-accent transition-colors"
         >
-        hello@yourdomain.com
+        info.nirvanbharat@gmail.com
     </a>
         </div>
         < div >
@@ -37,7 +37,7 @@ export default function ContactPage() {
             Phone
             </p>
             < a
-    href = "tel:+919876543210"
+    href = "tel:+919107868000"
     className = "font-serif text-2xl font-light hover:text-accent transition-colors"
         >
         +91 9107868000
@@ -63,4 +63,5 @@ export default function ContactPage() {
         </main>
   )
 }
+
 

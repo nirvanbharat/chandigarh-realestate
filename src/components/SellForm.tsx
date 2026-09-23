@@ -38,7 +38,7 @@ export function SellForm() {
           Thank you
         </p>
         <p className="mt-4 font-serif text-2xl font-light">
-          We&apos;ll be in touch within 24 hours.
+          {"We'll be in touch within 24 hours."}
         </p>
       </div>
     )
@@ -92,3 +92,5 @@ export function SellForm() {
     </form>
   )
 }
+
+
