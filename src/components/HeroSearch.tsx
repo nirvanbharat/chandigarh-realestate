@@ -11,7 +11,7 @@ export function HeroSearch() {
     e.preventDefault()
     const q = query.trim()
     if (!q) return
-    router.push(`/properties?q=${encodeURIComponent(q)}`)
+    router.push(`/properties/buy?q=${encodeURIComponent(q)}`)
   }
 
   return (
@@ -44,3 +44,4 @@ export function HeroSearch() {
     </form>
   )
 }
+
