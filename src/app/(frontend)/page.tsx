@@ -16,9 +16,9 @@ export default async function HomePage() {
   const settings = await payload.findGlobal({ slug: 'site-settings' })
 
   return (
-    <main>
+    <main className="hero-full">
       {/* Hero with video background and search */}
-      <section className="relative h-screen min-h-[640px] bg-ink overflow-hidden">
+      <section className="relative h-screen min-h-[640px] bg-ink overflow-hidden pt-20">
         <video
           autoPlay
           muted
@@ -116,5 +116,7 @@ export default async function HomePage() {
     </main>
   )
 }
+
+
 
 

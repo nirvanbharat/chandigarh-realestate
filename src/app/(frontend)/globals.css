@@ -10,3 +10,14 @@ body {
     background: #FAF9F6;
     color: #1A1A1A;
 }
+
+
+main:not(.hero-full) {
+  padding-top: 5rem;
+}
+
+@media (min-width: 768px) {
+  main:not(.hero-full) {
+    padding-top: 6rem;
+  }
+}
