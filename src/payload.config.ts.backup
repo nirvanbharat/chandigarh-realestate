@@ -1,5 +1,4 @@
-import { buildConfig } from 'payload'
-import { importExportPlugin } from '@payloadcms/plugin-import-export'
+﻿import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
@@ -50,10 +49,6 @@ export default buildConfig({
             },
             token: process.env.BLOB_READ_WRITE_TOKEN || '',
         }),
-    
-    importExportPlugin({
-      collections: [{ slug: 'properties' }],
-    }),
-  ],
+    ],
 })
 
