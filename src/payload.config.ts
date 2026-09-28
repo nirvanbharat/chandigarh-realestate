@@ -33,7 +33,7 @@ export default buildConfig({
     },
     db: postgresAdapter({
         pool: {
-            connectionString: process.env.DATABASE_URI || 'postgresql://neondb_owner:npg_MheL6yTnbm3K@ep-wispy-hill-b3fzuibx-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require',
+            connectionString: process.env.DATABASE_URI || '',
             max: 3,
         },
     }),
@@ -44,7 +44,7 @@ export default buildConfig({
     }),
     plugins: [
         vercelBlobStorage({
-            enabled: process.env.NODE_ENV === 'production',
+            enabled: true,
             collections: {
                 media: true,
             },
