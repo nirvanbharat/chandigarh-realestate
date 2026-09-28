@@ -1,4 +1,6 @@
-﻿import { Suspense } from 'react'
+export const revalidate = 60
+
+import { Suspense } from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { PropertyCard } from '@/components/PropertyCard'

@@ -1,4 +1,6 @@
-﻿import { getPayload } from 'payload'
+export const revalidate = 60
+
+import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'

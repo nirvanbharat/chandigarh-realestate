@@ -1,4 +1,6 @@
-﻿import { getPayload } from 'payload'
+export const revalidate = 60
+
+import { getPayload } from 'payload'
 import config from '@/payload.config'
 import Link from 'next/link'
 import { HeroSearch } from '@/components/HeroSearch'

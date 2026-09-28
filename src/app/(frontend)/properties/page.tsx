@@ -1,4 +1,6 @@
-﻿import Link from 'next/link'
+export const revalidate = 60
+
+import Link from 'next/link'
 
 const OPTIONS = [
   {
