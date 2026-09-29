@@ -23,6 +23,11 @@ export default async function BuyPage({
   if (typeof params.type === 'string' && params.type) {
     and.push({ type: { equals: params.type } })
   }
+  if (typeof params.beds === 'string' && params.beds) {
+    and.push({
+      'unitTypes.configuration': { like: params.beds },
+    })
+  }
   if (typeof params.q === 'string' && params.q) {
     and.push({ title: { like: params.q } })
   }
@@ -68,4 +73,3 @@ export default async function BuyPage({
     </main>
   )
 }
-
