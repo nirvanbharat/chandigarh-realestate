@@ -66,7 +66,7 @@ export default async function LocationPage({
         { status: { equals: 'available' } },
       ],
     },
-    sort: '-createdAt',
+    sort: ['title'],
     limit: 100,
     depth: 2,
   })
