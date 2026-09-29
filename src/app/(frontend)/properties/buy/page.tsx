@@ -35,7 +35,7 @@ export default async function BuyPage({
   const { docs: properties } = await payload.find({
     collection: 'properties',
     where: { and },
-    sort: '-createdAt',
+    sort: ['title', '-createdAt'],
     limit: 100,
     depth: 2,
   })
