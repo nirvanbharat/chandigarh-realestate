@@ -758,6 +758,13 @@ export interface SiteSetting {
   aboutBody?: string | null;
   contactEmail?: string | null;
   contactPhone?: string | null;
+  locationHeroes?: {
+    chandigarh?: (number | null) | Media;
+    mohali?: (number | null) | Media;
+    panchkula?: (number | null) | Media;
+    zirakpur?: (number | null) | Media;
+    newChandigarh?: (number | null) | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -773,6 +780,15 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   aboutBody?: T;
   contactEmail?: T;
   contactPhone?: T;
+  locationHeroes?:
+    | T
+    | {
+        chandigarh?: T;
+        mohali?: T;
+        panchkula?: T;
+        zirakpur?: T;
+        newChandigarh?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
