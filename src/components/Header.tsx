@@ -47,10 +47,15 @@ export function Header() {
         <div className="mx-auto max-w-site px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
           <Link
             href="/"
-            className="font-serif text-xl md:text-2xl font-light tracking-tight text-ink"
+            className="group flex flex-col leading-none"
             onClick={() => setOpen(false)}
           >
-            Nirvan Bharat
+            <span className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink">
+              Nirvan Bharat
+            </span>
+            <span className="mt-1 text-[9px] tracking-label uppercase text-muted">
+              Private Real Estate
+            </span>
           </Link>
 
           {/* Desktop nav */}
