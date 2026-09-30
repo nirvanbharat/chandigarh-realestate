@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { ChatWidget } from '@/components/ChatWidget'
 
 const serif = Cormorant_Garamond({
     subsets: ['latin'],
@@ -26,7 +27,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         <Header />
 { children }
 <Footer />
-    </body>
+            <ChatWidget />
+      </body>
     </html>
   )
 }
