@@ -35,7 +35,7 @@ export async function submitInquiry(formData: FormData) {
     // 2. Send email notification
     try {
         await resend.emails.send({
-            from: 'onboarding@resend.dev',   // must be verified in Resend
+            from: 'inquiries@nirvanbharat.com',   // must be verified in Resend
             to: 'info.nirvanbharat@gmail.com',            // your email
             replyTo: email,
             subject: `New inquiry: ${propertyTitle}`,
