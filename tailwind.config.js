@@ -22,7 +22,7 @@ export default {
                 site: '1440px',
             },
             spacing: {
-                section: '10rem',
+                section: '8rem',
             },
         },
     },
