@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Properties } from './collections/Properties'
 import { Agents } from './collections/Agents'
 import { Inquiries } from './collections/Inquiries'
+import { RentalSubmissions } from './collections/RentalSubmissions'
 import { SiteSettings } from './collections/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
@@ -24,7 +25,7 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Users, Media, Properties, Agents, Inquiries],
+    collections: [Users, Media, Properties, Agents, Inquiries, RentalSubmissions],
     globals: [SiteSettings],
     editor: lexicalEditor(),
     secret: process.env.PAYLOAD_SECRET || '',

@@ -72,6 +72,7 @@ export interface Config {
     properties: Property;
     agents: Agent;
     inquiries: Inquiry;
+    'rental-submissions': RentalSubmission;
     exports: Export;
     imports: Import;
     'payload-kv': PayloadKv;
@@ -87,6 +88,7 @@ export interface Config {
     properties: PropertiesSelect<false> | PropertiesSelect<true>;
     agents: AgentsSelect<false> | AgentsSelect<true>;
     inquiries: InquiriesSelect<false> | InquiriesSelect<true>;
+    'rental-submissions': RentalSubmissionsSelect<false> | RentalSubmissionsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
     imports: ImportsSelect<false> | ImportsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -262,6 +264,34 @@ export interface Inquiry {
   message?: string | null;
   property: number | Property;
   status?: ('new' | 'contacted' | 'closed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Owner-submitted rental listings awaiting review
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rental-submissions".
+ */
+export interface RentalSubmission {
+  id: number;
+  title: string;
+  location: 'chandigarh' | 'mohali' | 'panchkula' | 'zirakpur' | 'new-chandigarh';
+  type: 'apartment' | 'villa' | 'plot' | 'penthouse';
+  configuration?: string | null;
+  area?: string | null;
+  monthlyRent: string;
+  deposit?: string | null;
+  description?: string | null;
+  photos?: (number | Media)[] | null;
+  ownerName: string;
+  phone: string;
+  email: string;
+  status: 'pending' | 'approved' | 'rejected';
+  /**
+   * Not visible to the submitter
+   */
+  adminNotes?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -474,6 +504,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'inquiries';
         value: number | Inquiry;
+      } | null)
+    | ({
+        relationTo: 'rental-submissions';
+        value: number | RentalSubmission;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -615,6 +649,28 @@ export interface InquiriesSelect<T extends boolean = true> {
   message?: T;
   property?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rental-submissions_select".
+ */
+export interface RentalSubmissionsSelect<T extends boolean = true> {
+  title?: T;
+  location?: T;
+  type?: T;
+  configuration?: T;
+  area?: T;
+  monthlyRent?: T;
+  deposit?: T;
+  description?: T;
+  photos?: T;
+  ownerName?: T;
+  phone?: T;
+  email?: T;
+  status?: T;
+  adminNotes?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -814,7 +870,8 @@ export interface TaskCreateCollectionExport {
     id: string;
     name: string;
     batchSize?: number | null;
-    collectionSlug: 'users' | 'media' | 'properties' | 'agents' | 'inquiries' | 'exports' | 'imports';
+    collectionSlug:
+      'users' | 'media' | 'properties' | 'agents' | 'inquiries' | 'rental-submissions' | 'exports' | 'imports';
     drafts?: ('yes' | 'no') | null;
     exportCollection: string;
     fields?: string[] | null;

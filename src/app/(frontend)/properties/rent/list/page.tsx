@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { RentalSubmitForm } from '@/components/RentalSubmitForm'
 
 export default function RentListPage() {
   return (
@@ -8,21 +8,15 @@ export default function RentListPage() {
         <h1 className="mt-4 font-serif text-5xl md:text-6xl font-light text-ink">
           List Your Property
         </h1>
+        <p className="mt-6 max-w-prose text-ink/70 leading-relaxed">
+          Fill in the details below. Our team will review your submission and
+          get in touch within 24 hours. All listings are vetted before they
+          appear on the site.
+        </p>
       </header>
 
-      <div className="max-w-prose">
-        <p className="text-ink/80 leading-relaxed text-lg">
-          We&apos;re building a self-service listing tool. In the meantime, if you
-          have a property you&apos;d like to rent out, get in touch and we&apos;ll
-          handle it personally.
-        </p>
-
-        <Link
-          href="/contact"
-          className="inline-block mt-10 text-[11px] tracking-label uppercase border-b border-ink pb-1 hover:border-accent hover:text-accent transition-colors"
-        >
-          Get in touch
-        </Link>
+      <div className="max-w-3xl">
+        <RentalSubmitForm />
       </div>
     </main>
   )
