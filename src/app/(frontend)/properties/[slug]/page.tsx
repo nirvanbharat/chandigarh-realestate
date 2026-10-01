@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Media, Property } from '@/payload-types'
 import { InquiryForm } from '@/components/InquiryForm'
+import { SaveButton } from '@/components/SaveButton'
 
 export default async function PropertyDetailPage({
   params,
@@ -126,7 +127,8 @@ export default async function PropertyDetailPage({
         </div>
 
         <aside className="lg:col-span-1">
-          <div className="lg:sticky lg:top-12">
+          <div className="lg:sticky lg:top-12 space-y-4">
+            <SaveButton propertyId={String(property.id)} variant="full" />
             <InquiryForm
               propertyId={property.id}
               propertyTitle={property.title}

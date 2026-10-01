@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Property, Media } from '@/payload-types'
+import { SaveButton } from '@/components/SaveButton'
 
 export function PropertyCard({ property }: { property: Property }) {
   const image = property.images?.[0] as Media | undefined
@@ -19,6 +20,9 @@ export function PropertyCard({ property }: { property: Property }) {
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
           />
         )}
+        <div className="absolute top-3 right-3 bg-paper/90 backdrop-blur-sm rounded-full">
+          <SaveButton propertyId={String(property.id)} />
+        </div>
       </div>
 
       <div className="pt-5 pb-8 border-b border-hairline">
