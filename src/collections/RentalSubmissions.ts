@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { ConvertToPropertyButton } from '@/components/ConvertToPropertyButton'
 
 export const RentalSubmissions: CollectionConfig = {
   slug: 'rental-submissions',
@@ -10,6 +11,16 @@ export const RentalSubmissions: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'ownerName', 'location', 'monthlyRent', 'status', 'createdAt'],
     description: 'Owner-submitted rental listings awaiting review',
+    components: {
+      edit: {
+        beforeDocumentControls: [
+          {
+            path: '@/components/ConvertToPropertyButton',
+            exportName: 'ConvertToPropertyButton',
+          },
+        ],
+      },
+    },
   },
   access: {
     read: ({ req: { user } }) => Boolean(user),
