@@ -86,15 +86,32 @@ export function Header() {
             </Link>
           </nav>
 
-          <button
-            type="button"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-[10px] tracking-label uppercase text-ink"
-          >
-            {open ? 'Close' : 'Menu'}
-          </button>
+          <div className="md:hidden flex items-center gap-6">
+            <Link
+              href="/saved"
+              aria-label="Saved properties"
+              className="text-ink hover:text-accent transition-colors duration-300"
+            >
+              <svg
+                className="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </Link>
+            <button
+              type="button"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen(!open)}
+              className="text-[10px] tracking-label uppercase text-ink"
+            >
+              {open ? 'Close' : 'Menu'}
+            </button>
+          </div>
         </div>
       </header>
 
