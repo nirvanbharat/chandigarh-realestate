@@ -38,6 +38,7 @@ export async function POST(req: Request) {
     // Create the Property
     const property = await payload.create({
       collection: 'properties',
+      draft: false,
       data: {
         title: submission.title,
         location: submission.location,
