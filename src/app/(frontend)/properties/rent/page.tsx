@@ -1,30 +1,52 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 
-export default function RentPage() {
+const OPTIONS = [
+  {
+    slug: 'browse',
+    label: 'Browse Rentals',
+    number: '01',
+    description: 'Available rental properties across the Tricity.',
+  },
+  {
+    slug: 'list',
+    label: 'List Your Property',
+    number: '02',
+    description: 'Submit your property for our rental catalogue.',
+  },
+]
+
+export default function RentLanding() {
   return (
     <main className="mx-auto max-w-site px-6 md:px-12 py-20">
       <header className="mb-16 border-b border-hairline pb-10">
-        <p className="text-[11px] tracking-label uppercase text-muted">
-          Rent
-        </p>
+        <p className="text-[11px] tracking-label uppercase text-muted">Rent</p>
         <h1 className="mt-4 font-serif text-5xl md:text-6xl font-light text-ink">
-          Rental Properties
+          How can we help?
         </h1>
       </header>
 
-      <div className="max-w-prose">
-        <p className="text-ink/80 leading-relaxed text-lg">
-          Our rental catalogue is coming soon. In the meantime, we can help
-          with rental inquiries across the Tricity — reach out and we&apos;ll
-          connect you with what&apos;s available.
-        </p>
-
-        <Link
-          href="/contact"
-          className="inline-block mt-10 text-[11px] tracking-label uppercase border-b border-ink pb-1 hover:border-accent hover:text-accent transition-colors"
-        >
-          Get in touch
-        </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 border-t border-hairline">
+        {OPTIONS.map((opt, i) => (
+          <Link
+            key={opt.slug}
+            href={`/properties/rent/${opt.slug}`}
+            className={`group py-16 md:px-8 border-b border-hairline md:border-b-0 md:border-r flex flex-col justify-between min-h-[300px] ${
+              i === OPTIONS.length - 1 ? 'md:border-r-0' : ''
+            }`}
+          >
+            <span className="text-[11px] tracking-label uppercase text-muted">
+              {opt.number}
+            </span>
+            <div>
+              <h2 className="font-serif text-4xl md:text-5xl font-light group-hover:text-accent transition-colors">
+                {opt.label}
+              </h2>
+              <p className="mt-6 text-sm text-ink/60 leading-relaxed max-w-xs">
+                {opt.description}
+              </p>
+            </div>
+          </Link>
+        ))}
       </div>
     </main>
   )

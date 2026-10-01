@@ -199,6 +199,7 @@ export interface Property {
   slug: string;
   location: 'chandigarh' | 'mohali' | 'panchkula' | 'zirakpur' | 'new-chandigarh';
   type: 'apartment' | 'villa' | 'plot' | 'penthouse';
+  listingType: 'sale' | 'rent';
   unitTypes?:
     | {
         configuration: string;
@@ -567,6 +568,7 @@ export interface PropertiesSelect<T extends boolean = true> {
   slug?: T;
   location?: T;
   type?: T;
+  listingType?: T;
   unitTypes?:
     | T
     | {

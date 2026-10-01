@@ -15,7 +15,10 @@ export default async function BuyPage({
   const params = await searchParams
   const payload = await getPayload({ config })
 
-  const and: Where[] = [{ status: { equals: 'available' } }]
+  const and: Where[] = [
+    { status: { equals: 'available' } },
+    { listingType: { equals: 'sale' } },
+  ]
 
   if (typeof params.location === 'string' && params.location) {
     and.push({ location: { equals: params.location } })

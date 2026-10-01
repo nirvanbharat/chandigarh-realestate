@@ -65,6 +65,19 @@ export const Properties: CollectionConfig = {
             ],
         },
         {
+            name: 'listingType',
+            type: 'select',
+            defaultValue: 'sale',
+            required: true,
+            options: [
+                { label: 'For Sale', value: 'sale' },
+                { label: 'For Rent', value: 'rent' },
+            ],
+            admin: {
+                position: 'sidebar',
+            },
+        },
+        {
             name: 'unitTypes',
             type: 'array',
             labels: {
