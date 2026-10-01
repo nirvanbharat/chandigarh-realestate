@@ -36,11 +36,19 @@ export async function POST(req: Request) {
       .filter(Boolean)
 
     // Create the Property
+    const baseSlug = submission.title
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+
     const property = await payload.create({
       collection: 'properties',
       draft: false,
       data: {
         title: submission.title,
+        slug: baseSlug + '-' + Date.now(),
         location: submission.location,
         type: submission.type,
         listingType: 'rent',
