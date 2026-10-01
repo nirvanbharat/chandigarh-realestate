@@ -232,7 +232,7 @@ export interface Property {
     | null;
   images?: (number | Media)[] | null;
   floorPlan?: (number | null) | Media;
-  status?: ('available' | 'reserved' | 'sold') | null;
+  status?: ('available' | 'reserved' | 'sold' | 'rented' | 'withdrawn') | null;
   featured?: boolean | null;
   updatedAt: string;
   createdAt: string;

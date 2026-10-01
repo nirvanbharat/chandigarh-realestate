@@ -113,7 +113,9 @@ export const Properties: CollectionConfig = {
             options: [
                 { label: 'Available', value: 'available' },
                 { label: 'Reserved', value: 'reserved' },
-                { label: 'Sold', value: 'sold' },
+                { label: 'Sold (for sale)', value: 'sold' },
+                { label: 'Rented (for rent)', value: 'rented' },
+                { label: 'Withdrawn', value: 'withdrawn' },
             ],
         },
         { name: 'featured', type: 'checkbox', defaultValue: false },
