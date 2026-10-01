@@ -1,10 +1,21 @@
 import type { CollectionConfig } from 'payload'
+import { UnlistButton } from '@/components/UnlistButton'
 
 export const Properties: CollectionConfig = {
     slug: 'properties',
     admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'location', 'type', 'status'],
+        components: {
+            edit: {
+                beforeDocumentControls: [
+                    {
+                        path: '@/components/UnlistButton',
+                        exportName: 'UnlistButton',
+                    },
+                ],
+            },
+        },
     },
     access: {
         read: () => true,
