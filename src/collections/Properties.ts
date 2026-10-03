@@ -64,6 +64,15 @@ export const Properties: CollectionConfig = {
             ],
         },
         {
+            name: 'coordinates',
+            type: 'point',
+            label: 'Map Coordinates',
+            admin: {
+                description: 'Click on the map to set the exact location.',
+                position: 'sidebar',
+            },
+        },
+        {
             name: 'type',
             type: 'select',
             required: true,

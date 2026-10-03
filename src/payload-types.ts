@@ -200,6 +200,13 @@ export interface Property {
    */
   slug: string;
   location: 'chandigarh' | 'mohali' | 'panchkula' | 'zirakpur' | 'new-chandigarh';
+  /**
+   * Click on the map to set the exact location.
+   *
+   * @minItems 2
+   * @maxItems 2
+   */
+  coordinates?: [number, number] | null;
   type: 'apartment' | 'villa' | 'plot' | 'penthouse';
   listingType: 'sale' | 'rent';
   unitTypes?:
@@ -601,6 +608,7 @@ export interface PropertiesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   location?: T;
+  coordinates?: T;
   type?: T;
   listingType?: T;
   unitTypes?:
