@@ -3,8 +3,8 @@ export const revalidate = 60
 import { Suspense } from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import { PropertyCard } from '@/components/PropertyCard'
 import { PropertyFilters } from '@/components/PropertyFilters'
+import { PropertyViewToggle } from '@/components/PropertyViewToggle'
 import type { Where } from 'payload'
 
 export default async function BuyPage({
@@ -38,12 +38,13 @@ export default async function BuyPage({
   const { docs: properties } = await payload.find({
     collection: 'properties',
     where: { and },
-    sort: ['title', '-createdAt'],
+    sort: ['title'],
     limit: 100,
     depth: 2,
   })
 
   const count = properties.length
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''
 
   return (
     <main className="mx-auto max-w-site px-6 md:px-12 py-20">
@@ -67,11 +68,7 @@ export default async function BuyPage({
       {count === 0 ? (
         <p className="text-muted">No listings match your search.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </div>
+        <PropertyViewToggle properties={properties} mapboxToken={mapboxToken} />
       )}
     </main>
   )
