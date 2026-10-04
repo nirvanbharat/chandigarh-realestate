@@ -44,7 +44,7 @@ export default async function BuyPage({
   })
 
   const count = properties.length
-  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || ''
+  const mapboxToken = process.env.MAPBOX_TOKEN || ''
 
   return (
     <main className="mx-auto max-w-site px-6 md:px-12 py-20">
