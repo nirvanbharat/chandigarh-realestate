@@ -7,7 +7,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { RichText } from '@/components/RichText'
 import { PropertyCard } from '@/components/PropertyCard'
-import type { Media, Where } from 'payload'
+import type { Media } from '@/payload-types'
+import type { Where } from 'payload'
 import type { Metadata } from 'next'
 
 export async function generateMetadata({
