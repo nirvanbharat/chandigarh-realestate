@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { ChatWidget } from '@/components/ChatWidget'
+import { WhatsAppFloat } from '@/components/WhatsAppFloat'
 
 const serif = Cormorant_Garamond({
     subsets: ['latin'],
@@ -27,7 +28,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         <Header />
 { children }
 <Footer />
-            <ChatWidget />
+            <WhatsAppFloat />
+        <ChatWidget />
       </body>
     </html>
   )
