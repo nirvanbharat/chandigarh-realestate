@@ -73,6 +73,7 @@ export interface Config {
     agents: Agent;
     inquiries: Inquiry;
     'rental-submissions': RentalSubmission;
+    guides: Guide;
     exports: Export;
     imports: Import;
     'payload-kv': PayloadKv;
@@ -89,6 +90,7 @@ export interface Config {
     agents: AgentsSelect<false> | AgentsSelect<true>;
     inquiries: InquiriesSelect<false> | InquiriesSelect<true>;
     'rental-submissions': RentalSubmissionsSelect<false> | RentalSubmissionsSelect<true>;
+    guides: GuidesSelect<false> | GuidesSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
     imports: ImportsSelect<false> | ImportsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -299,6 +301,51 @@ export interface RentalSubmission {
    * Not visible to the submitter
    */
   adminNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Neighborhood guides and area editorials
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guides".
+ */
+export interface Guide {
+  id: number;
+  title: string;
+  /**
+   * Auto-generated from title if blank.
+   */
+  slug: string;
+  /**
+   * Links this guide to a location page.
+   */
+  location: 'chandigarh' | 'mohali' | 'panchkula' | 'zirakpur' | 'new-chandigarh';
+  /**
+   * Short summary shown on the guides index. 1–2 sentences.
+   */
+  excerpt?: string | null;
+  heroImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  publishedAt?: string | null;
+  /**
+   * Show on the homepage.
+   */
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -515,6 +562,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'rental-submissions';
         value: number | RentalSubmission;
+      } | null)
+    | ({
+        relationTo: 'guides';
+        value: number | Guide;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -679,6 +730,22 @@ export interface RentalSubmissionsSelect<T extends boolean = true> {
   email?: T;
   status?: T;
   adminNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guides_select".
+ */
+export interface GuidesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  location?: T;
+  excerpt?: T;
+  heroImage?: T;
+  content?: T;
+  publishedAt?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -879,7 +946,15 @@ export interface TaskCreateCollectionExport {
     name: string;
     batchSize?: number | null;
     collectionSlug:
-      'users' | 'media' | 'properties' | 'agents' | 'inquiries' | 'rental-submissions' | 'exports' | 'imports';
+      | 'users'
+      | 'media'
+      | 'properties'
+      | 'agents'
+      | 'inquiries'
+      | 'rental-submissions'
+      | 'guides'
+      | 'exports'
+      | 'imports';
     drafts?: ('yes' | 'no') | null;
     exportCollection: string;
     fields?: string[] | null;
