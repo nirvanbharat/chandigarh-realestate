@@ -125,6 +125,7 @@ export default async function PropertyDetailPage({
                 coordinates={coordinates}
                 title={property.title}
                 mapboxToken={mapboxToken}
+                phone="+919107868000"
               />
             </div>
           )}
