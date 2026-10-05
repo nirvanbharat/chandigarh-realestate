@@ -1,26 +1,106 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 type Props = {
   phone?: string
-  message?: string
 }
 
-export function WhatsAppFloat({
-  phone = '919107868000',
-  message = "Hi, I'd like to know more about a property on Nirvan Bharat.",
-}: Props) {
+export function WhatsAppFloat({ phone = '919107868000' }: Props) {
+  const pathname = usePathname()
   const [visible, setVisible] = useState(false)
+  const [pageTitle, setPageTitle] = useState<string | null>(null)
+
+  // Fetch the current page's title from the DOM (set by each page's metadata)
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    const title = document.title || ''
+    // Strip the " | Nirvan Bharat" suffix if present
+    const cleaned = title.replace(/\s*\|\s*Nirvan Bharat\s*$/i, '').trim()
+    setPageTitle(cleaned || null)
+  }, [pathname])
 
   useEffect(() => {
-    // Delay appearance for 1.5s so it doesn't intrude on page load
     const timer = setTimeout(() => setVisible(true), 1500)
     return () => clearTimeout(timer)
   }, [])
 
-  const encodedMessage = encodeURIComponent(message)
-  const url = `https://wa.me/${phone}?text=${encodedMessage}`
+  // Build a context-aware message based on the current path
+  function buildMessage(): string {
+    if (!pathname) return "Hi, I'd like to know more about your properties."
+
+    // Property detail page: /properties/[slug]
+    if (pathname.match(/^\/properties\/[^/]+$/) && !pathname.includes('/buy') && !pathname.includes('/rent')) {
+      return pageTitle
+        ? `Hi, I'm interested in ${pageTitle}. Could you share more details?`
+        : "Hi, I'm interested in a property I saw on your website."
+    }
+
+    // Rent browse
+    if (pathname.startsWith('/properties/rent/browse') || pathname === '/properties/rent') {
+      return "Hi, I'd like to know more about rental properties."
+    }
+
+    // Rent list (owner wants to list)
+    if (pathname.startsWith('/properties/rent/list')) {
+      return "Hi, I'd like to list my property for rent."
+    }
+
+    // Buy listing page
+    if (pathname.startsWith('/properties/buy')) {
+      return "Hi, I'd like to know more about a property for sale."
+    }
+
+    // Sell page
+    if (pathname.startsWith('/properties/sell')) {
+      return "Hi, I'd like to sell my property. Could you help?"
+    }
+
+    // Location pages: /locations/[slug]
+    const locationMatch = pathname.match(/^\/locations\/([^/]+)/)
+    if (locationMatch) {
+      const slug = locationMatch[1]
+      const label = slug
+        .split('-')
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ')
+      return `Hi, I'm interested in properties in ${label}.`
+    }
+
+    // Guide pages: /guides/[slug]
+    if (pathname.match(/^\/guides\/[^/]+$/)) {
+      return pageTitle
+        ? `Hi, I read your guide "${pageTitle}" and have a question.`
+        : "Hi, I read one of your guides and have a question."
+    }
+
+    // Guides index
+    if (pathname === '/guides') {
+      return "Hi, I have a question about one of your area guides."
+    }
+
+    // Contact
+    if (pathname === '/contact') {
+      return "Hi, I'd like to get in touch."
+    }
+
+    // Vision
+    if (pathname === '/vision') {
+      return "Hi, I'd like to know more about Nirvan Bharat."
+    }
+
+    // Properties landing
+    if (pathname === '/properties') {
+      return "Hi, I'd like to know more about your listings."
+    }
+
+    // Default / homepage
+    return "Hi, I'd like to know more about your properties."
+  }
+
+  const message = buildMessage()
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 
   return (
     <a
@@ -28,14 +108,13 @@ export function WhatsAppFloat({
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className={`fixed bottom-6 left-6 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] shadow-lg transition-all duration-500 hover:scale-110 ${
+      className={`fixed bottom-6 left-6 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] transition-all duration-500 hover:scale-110 ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       style={{
         boxShadow: '0 8px 24px rgba(37, 211, 102, 0.35)',
       }}
     >
-      {/* WhatsApp logo */}
       <svg
         className="w-7 h-7 text-white"
         viewBox="0 0 24 24"
