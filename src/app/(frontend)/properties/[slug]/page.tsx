@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Media, Property } from '@/payload-types'
 import { InquiryForm } from '@/components/InquiryForm'
+import { RichText } from '@/components/RichText'
+import { SinglePropertyMap } from '@/components/SinglePropertyMap'
 import { SaveButton } from '@/components/SaveButton'
 
 export default async function PropertyDetailPage({
@@ -25,6 +27,8 @@ export default async function PropertyDetailPage({
   if (!property) notFound()
 
   const images = (property.images || []) as Media[]
+  const mapboxToken = process.env.MAPBOX_TOKEN || ''
+  const coordinates = property.coordinates as [number, number] | undefined
 
   return (
     <main className="mx-auto max-w-site px-6 md:px-12 py-16">
@@ -106,9 +110,22 @@ export default async function PropertyDetailPage({
               <p className="text-[11px] tracking-label uppercase text-muted mb-6">
                 Description
               </p>
-              <div className="max-w-prose text-ink/80 leading-relaxed">
-                <p>Description rendering coming next.</p>
+              <div className="max-w-prose">
+                <RichText data={property.description} />
               </div>
+            </div>
+          )}
+
+          {coordinates && coordinates.length === 2 && (
+            <div className="mt-16 border-t border-hairline pt-10">
+              <p className="text-[11px] tracking-label uppercase text-muted mb-6">
+                Location
+              </p>
+              <SinglePropertyMap
+                coordinates={coordinates}
+                title={property.title}
+                mapboxToken={mapboxToken}
+              />
             </div>
           )}
 
